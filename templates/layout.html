@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
 
     {% if title %}
         <title>Apache Kafka - {{title}}</title>
@@ -15,10 +15,29 @@
         <title>Apache Kafka</title>
     {% endif %}
 </head>
-<body>
-    <div class="container">
-        {% block content %}{% endblock %}
-    </div>  
+<body >
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+            <div class="container">
+                <a class="navbar-brand mr-4" href="/">Apache Kafka Tutorial</a>
+                <!--<button class="navbar-toggler" type="button" data-toggle="collapse">-->
+
+                <!--</button>-->
+                <a class="navbar-brand mr-4" href="/Theory">Theory</a>
+                <a class="navbar-brand mr-4" href="/Download">Download</a>
+                <a class="navbar-brand mr-4" href="/Quickstart">Quickstart</a>
+            </div>
+        </nav>
+    </header>
+
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8">
+            {% block content %}{% endblock %}
+        </div>  
+    </div>
+</main>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -1,7 +1,36 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>About Apache Kafka</h1>
-    <p>If you have are not familiar with networking topics such as distributed systems, clusters, 
-        or the consumer producer design pattern check out the theory page first. 
-    If you have worked with distributed systems before but not Apache kafka, then feel free to go right to the quickstart page</p>
+    <h1>Apache Kafka</h1>
+    <br>
+    <h4>
+        Distributed streaming platform
+    </h4>
+    <img src="/static/kafka-diagram.png" class="img-fluid" style="max-width: 50%;" alt="kafka-diagram">
+    <p>
+        Kafka is designed to facilitate the transfer of a data between different systems or applications
+        in an efficient and reliable manner. Kafka runs on a <b>cluster</b> of servers called <b>brokers</b>.
+    </p>
+    <p>
+        Systems can publish <b>records</b> to different categories called <b>topics</b>.
+        Topics are separated into <b>partitions</b>, which are ordered immutable sequences
+        of records. Paritions are append-only, meaning records cannot be inserted in the
+        middle of the partition and records cannot be deleted.
+    </p>
+    <img src="/static/log_anatomy.png" alt="log-anatomy" class="img-fluid">
+    <p>
+        Partitions of a topic are distributed among the brokers in the cluster. Each partition is also replicated across a number of other
+        brokers in the cluster. The primary broker for a partition is called the <b>leader</b> and the brokers
+        containing the replicated partition are called <b>followers</b>. Brokers will act as a leader for some
+        partitions and a follower for others for efficient load balancing. The partition's leader services all
+        read/write requests to that partition while the followers simply maintain a copy. If the leader ever becomes unavailable,
+        one of the followers for that partition will become the new leader.
+    </p>
+    <br>
+    <h4>Data flow</h4>
+    <p>
+        <b>Producers</b> publish streams of records to topics. 
+    </p>
+    <p>
+        <b>Consumers</b> subscribe to topics to read the records from that topic as they are published.
+    </p>
 {% endblock %}

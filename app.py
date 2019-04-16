@@ -6,9 +6,9 @@ app = Flask(__name__)
 def home_page():
     return render_template('home.html')
 
-@app.route('/Theory')
-def theory_page():
-    return render_template('theory.html')
+@app.route('/Reference')
+def reference_page():
+    return render_template('reference.html')
 
 @app.route('/Quickstart')
 def quickstart_page():

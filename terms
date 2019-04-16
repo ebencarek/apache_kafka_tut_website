@@ -1,10 +1,23 @@
-replication factor
-cluster
-consumer 
-producer
-broker
-zookeeper
-topic
-partition
-replication factor
+topic - category or feed to which records are published, made up of 1 or more partitions
 
+partition - ordered, immutable sequence of records that is append-only
+
+record - a piece of data stored in a partition, consists of a key, value, and timestamp
+
+replication factor - the number of replicas kept for each partition in a topic
+
+leader - node in cluster that handles all read/write operations to a particular partition
+
+follower - maintains a copy of a particular partition, may become leader if current leader fails
+
+consumer - subscribes to one or more topics to process the streams of records published to them
+
+consumer group - logical grouping of consumer processes, where each record in a partition is only sent to one processes per consumer group
+
+producer - publishes records to one or more topics
+
+cluster - collection of kafka nodes
+
+broker - node in kafka cluster
+
+zookeeper - service used by kafka to maintain state within a cluster

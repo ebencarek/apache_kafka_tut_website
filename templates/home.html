@@ -26,7 +26,7 @@
         one of the followers for that partition will become the new leader.
     </p>
     <br>
-    <h4>Data flow</h4>
+    <h4>Data Flow</h4>
     <p>
         <b>Producers</b> publish streams of records to topics. The producer is responsible for choosing which
         partition the record is assigned to. By default, the records are assigned to partitions in a round-robin
@@ -45,5 +45,12 @@
         that two copies of the data would exist in memory at the same time, and data would constantly be copied between user and
         kernel memory space. Working directly from disk allows Kafka to use less memory, meaning the operating
         system has more memory available for caching, and there is less byte-copying occuring when data is being transferred.
+    </p>
+    <br>
+    <h4>Use Cases</h4>
+    <p>Kafka can be used as a traditional messaging system, as it provides low latency and high durability.</p>
+    <p>
+        Kafka is also commonly used for stream processing, where consumers will pull raw data from Kafka topics and
+        process the data, then publish the results to new topics for later use.
     </p>
 {% endblock %}

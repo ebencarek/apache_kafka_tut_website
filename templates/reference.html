@@ -2,5 +2,54 @@
 {% block content %}
     <h1>Reference</h1>
     <br>
-    
+    <table class="table">
+        <tr>
+            <th scope="row">Topic</th>
+            <td>Category or feed to which records are published, made up of 1 or more partitions</td>
+        </tr>
+        <tr>
+            <th scope="row">Partition</th>
+            <td>Ordered, immutable sequence of records that is append-only</td>
+        </tr>
+        <tr>
+            <th scope="row">Record</th>
+            <td>A piece of data stored in a partition, consists of a key, value, and timestamp</td>
+        </tr>
+        <tr>
+            <th scope="row">Replication factor</th>
+            <td>The number of replicas kept for each partition in a topic</td>
+        </tr>
+        <tr>
+            <th scope="row">Leader</th>
+            <td>Node in cluster that handles all read/write operations to a particular partition</td>
+        </tr>
+        <tr>
+            <th scope="row">Follower</th>
+            <td>Node that maintains a copy of a particular partition, may become leader if current leader fails</td>
+        </tr>
+        <tr>
+            <th scope="row">Consumer</th>
+            <td>System that subscribes to one or more topics to process the streams of records published to them</td>
+        </tr>
+        <tr>
+            <th scope="row">Consumer group</th>
+            <td>Logical grouping of consumer processes, where each record in a partition is only sent to one consumer per consumer group</td>
+        </tr>
+        <tr>
+            <th scope="row">Producer</th>
+            <td>System that publishes records to one or more topics</td>
+        </tr>
+        <tr>
+            <th scope="row">Cluster</th>
+            <td>Collection of Kafka nodes</td>
+        </tr>
+        <tr>
+            <th scope="row">Broker</th>
+            <td>A node in the Kafka cluster</td>
+        </tr>
+        <tr>
+            <th scope="row">Zookeeper</th>
+            <td>Service used by Kafka to maintain state within the cluster</td>
+        </tr>
+    </table>
 {% endblock %}

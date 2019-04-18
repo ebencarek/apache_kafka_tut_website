@@ -12,7 +12,7 @@ follower - maintains a copy of a particular partition, may become leader if curr
 
 consumer - subscribes to one or more topics to process the streams of records published to them
 
-consumer group - logical grouping of consumer processes, where each record in a partition is only sent to one processes per consumer group
+consumer group - logical grouping of consumer processes, where each record in a partition is only sent to one consumer per consumer group
 
 producer - publishes records to one or more topics
 

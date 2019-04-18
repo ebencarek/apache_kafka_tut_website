@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, send_file
 app = Flask(__name__)
 
 @app.route('/')
@@ -18,7 +18,13 @@ def quickstart_page():
 def download_page():
     return render_template('download.html')
 
+@app.route('/download_zookeeper_properties')
+def download_zookeeper_properties():
+    return send_file("static/zookeeper.properties", attachment_filename="zookeeper.properties", as_attachment=True)
+
+@app.route('/download_server_properties')
+def download_server_properties():
+    return send_file("static/server.properties", attachment_filename="server.properties", as_attachment=True)
+
 if __name__ == '__main__':
     app.run(debug=True)
-
-

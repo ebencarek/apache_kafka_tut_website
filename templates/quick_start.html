@@ -1,4 +1,62 @@
 {% extends "layout.html" %}
 {% block content %}
-    <p>Here you will find a page that will show you how to run a simple kafka application </p>
+    <p>This tutorial assumes you are working in a Unix system.</p>
+    <h4>Install Kafka</h4>
+    <p>
+        Download the <a href="https://www.confluent.io/download/" target="_blank">Confluent Platform</a> , which contains the most recent version of Apache Kafka.
+    </p>
+    <p>
+        Decompres the file. Then move the entire confluent folder to your favorite installation location, for example: <code>/usr/local</code>
+    </p>
+    <p>
+        Next, add the location of the Confluent bin directory to your PATH. Add this line to your <code>~/.bash_profile</code>:
+    </p>
+    <pre>
+        <code>export PATH=&lt;path-to-confluent&gt;/bin:$PATH</code>
+    </pre>
+    <h4>Start Zookeeper and Kafka</h4>
+    <p>
+        Kafka uses a service called Zookeeper under the hood, so we first need to start the Zookeeper server.
+    </p>
+    <p>
+        In your working directory, download the <code><a href="/download_zookeeper_properties">zookeeper.properties</a></code> file. Then run:
+    </p>
+    <pre>
+        <code>&gt; zookeeper-server-start zookeeper.properties</code>
+    </pre>
+    <p>To start Kafka, first download <code><a href="/download_server_properties">server.properties</a></code> into your working directory. Then in another console run:</p>
+    <pre>
+        <code>&gt; kafka-server-start server.properties</code>
+    </pre>
+    <h4>Create a topic</h4>
+    <p>
+        Kafka should now be up and running locally on port 9092. Open another console, and let's create a topic called "test" with 1 partition:
+    </p>
+    <pre>
+        <code>&gt; kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test</code>
+    </pre>
+    <p>We can see this topic by running the list command:</p>
+    <pre>
+        <code>&gt; kafka-topics --list --bootstrap-server localhost:9092</code>
+        <code>test</code>
+    </pre>
+    <h4>Create a Producer</h4>
+    <p>
+        To send some messages to this topic, Kafka's built in command line producer tool. Then anything you type in this terminal will be published to the "test" topic, one line per message.
+    </p>
+    <pre>
+        <code>&gt; kafka-console-producer --broker-list localhost:9092 --topic test</code>
+        <code>&gt; Hello World!</code>
+    </pre>
+    <h4>Create a Consumer</h4>
+    <p>
+        We can view the messages being published to this topic in another console by running Kafka's command line consumer:
+    </p>
+    <pre>
+        <code>&gt; kafka-console-consumer --bootstrap-server localhost:9092 --topic test --from-beginning</code>
+        <code>Hello World!</code>
+    </pre>
+    <p>
+        You can continue to type messages into the producer console and they will appear in the consumer console.
+    </p>
 {% endblock %}

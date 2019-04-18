@@ -1,0 +1,29 @@
+This tutorial assumes you are working in a Unix system.
+
+Download the Confluent Platform, which contains the most recent version of Apache Kafka.
+
+Decompress the file. Then move the entire confluent folder to your favorite installation location, for example, /usr/local
+
+Next, add the location of the Confluent bin directory to your PATH. Add this line to your ~/.bash_profile file: export PATH=<path-to-confluent>/bin:$PATH
+
+Kafka uses a service called Zookeeper under the hood, so we first need to start the Zookeeper server.
+
+In your working directory, download the zookeeper.properties file. Then run:
+> zookeeper-server-start zookeeper.properties
+
+To start Kafka, first download server.properties into your working directory. Then in another console run:
+> kafka-server-start server.properties
+
+Kafka should now be up and running locally on port 9092. Open another console, and let's create a topic called "test" with 1 partition:
+> kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test
+
+We can see this topic by running the list command:
+> kafka-topics --list --bootstrap-server localhost:9092
+
+To send some messages to this topic, we can use Kafka's built in command line producer tool:
+> kafka-console-producer --broker-list localhost:9092 --topic test
+
+Anything you type in this terminal will be published to the "test" topic, one line per message.
+
+We can view the messages being published to this topic in another console by running Kafka's command line consumer:
+> kafka-console-consumer --bootstrap-server localhost:9092 --topic test --from-beginning

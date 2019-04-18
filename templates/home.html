@@ -3,7 +3,7 @@
     <h1>Apache Kafka</h1>
     <br>
     <h4>
-        Distributed streaming platform
+        Apache Kafka is a distributed streaming platform
     </h4>
     <img src="/static/kafka-diagram.png" class="img-fluid" style="max-width: 50%;" alt="kafka-diagram">
     <p>
@@ -28,9 +28,22 @@
     <br>
     <h4>Data flow</h4>
     <p>
-        <b>Producers</b> publish streams of records to topics. 
+        <b>Producers</b> publish streams of records to topics. The producer is responsible for choosing which
+        partition the record is assigned to. By default, the records are assigned to partitions in a round-robin
+        fashion for even distribution.
     </p>
     <p>
-        <b>Consumers</b> subscribe to topics to read the records from that topic as they are published.
+        <b>Consumers</b> subscribe to topics to read the records from that topic as they are published. Consumers
+        are labeled with a <b>consumer group</b> name, and each record published to a topic is delivered to only
+        one consumer within a consumer group.
+    </p>
+    <p>
+        All data that is published to the Kafka cluster is persisted to disk and retained for a configurable amount
+        of time. When data is handled in the cluster, Kafka writes to and reads from the disk directly rather than
+        maintaining an additional copy of the data in memory. The reason for this is that modern operating systems efficiently
+        cache data from the disk in memroy, so maintaining an additional copy of the data in Kafka's program memory would mean
+        that two copies of the data would exist in memory at the same time, and data would constantly be copied between user and
+        kernel memory space. Working directly from disk allows Kafka to use less memory, meaning the operating
+        system has more memory available for caching, and there is less byte-copying occuring when data is being transferred.
     </p>
 {% endblock %}

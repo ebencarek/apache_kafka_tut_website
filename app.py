@@ -14,6 +14,10 @@ def reference_page():
 def quickstart_page():
     return render_template('quick_start.html')
 
+@app.route('/Demo')
+def demo_page():
+    return render_template('demo.html')
+
 @app.route('/Download')
 def download_page():
     return render_template('download.html')
